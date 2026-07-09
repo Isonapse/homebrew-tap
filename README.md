@@ -24,6 +24,13 @@ export HOMEBREW_GITHUB_API_TOKEN=ghp_...
 brew install isonapse/tap/isonapse-beta
 ```
 
+## Beta marking
+
+These formulas install beta software. Versions carry a `-beta` suffix —
+`brew` shows e.g. `0.2.0-beta-main.a3f5d2e`, and the installed binary
+reports `isonapse 0.2.0-beta+main.a3f5d2e`. The suffix is dropped when
+Isonapse graduates from beta.
+
 ## Notes
 
 - Formula files are rendered by the release pipeline on every channel
