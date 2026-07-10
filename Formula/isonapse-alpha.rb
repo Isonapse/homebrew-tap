@@ -4,8 +4,8 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-alpha.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every alpha release.
-# Placeholders: alpha-baf978f 0.2.0-beta alpha baf978f
-# 45c52d26421523e5a0e9c1710fbeed41fe44151ff08fa72e5026995700b5159f 8b1c1c2b0ddff00f56d8b10e0922ac9fa8fe92eac412b716104127bfd145c991
+# Placeholders: alpha-c2cfe7f 0.2.0-beta alpha c2cfe7f
+# 7228651f195a7040b2825f556154dde1550701ea72c2028e9d36c152175ccf67 b708422209a9095b03bd9beac575b1bf2457c21b371ca93674b9622420b3a8da
 
 require "download_strategy"
 
@@ -77,16 +77,16 @@ end
 class IsonapseAlpha < Formula
   desc "Policy-first AI governance for Claude Code and beyond (alpha channel)"
   homepage "https://github.com/Isonapse/isonapse"
-  version "0.2.0-beta-alpha.baf978f"
+  version "0.2.0-beta-alpha.c2cfe7f"
 
   conflicts_with "isonapse", because: "both install the isonapse binaries (channel variants)"
   conflicts_with "isonapse-beta", because: "both install the isonapse binaries (channel variants)"
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-baf978f/isonapse-alpha-baf978f-aarch64-apple-darwin.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-c2cfe7f/isonapse-alpha-c2cfe7f-aarch64-apple-darwin.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "45c52d26421523e5a0e9c1710fbeed41fe44151ff08fa72e5026995700b5159f"
+      sha256 "7228651f195a7040b2825f556154dde1550701ea72c2028e9d36c152175ccf67"
     end
     # macOS x86_64 is intentionally absent: the release build matrix
     # ships aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
@@ -94,9 +94,9 @@ class IsonapseAlpha < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-baf978f/isonapse-alpha-baf978f-x86_64-unknown-linux-gnu.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-c2cfe7f/isonapse-alpha-c2cfe7f-x86_64-unknown-linux-gnu.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "8b1c1c2b0ddff00f56d8b10e0922ac9fa8fe92eac412b716104127bfd145c991"
+      sha256 "b708422209a9095b03bd9beac575b1bf2457c21b371ca93674b9622420b3a8da"
     end
   end
 
@@ -121,6 +121,6 @@ class IsonapseAlpha < Formula
   end
 
   test do
-    assert_match "0.2.0-beta+alpha.baf978f", shell_output("#{bin}/isonapse --version")
+    assert_match "0.2.0-beta+alpha.c2cfe7f", shell_output("#{bin}/isonapse --version")
   end
 end
