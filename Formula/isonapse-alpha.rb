@@ -4,8 +4,8 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-alpha.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every alpha release.
-# Placeholders: alpha-c85ba49 0.2.0-beta alpha c85ba49
-# d49abfb45ea81806f7c2e54a9c874e8bdf6f880a6c9e50acd8cbff1343360f72 53059fee99bd1429521ce9949d05bbec7b544af14cec024688e61f11fd36ce30
+# Placeholders: alpha-8415282 0.2.0-beta alpha 8415282
+# 4d8b675ecf9626c2bd8bef5a35a6a4d625c663756bf71b078fb9b14cf301fee4 78c19a5612de24e4d340fe1a0f72e21d69224f93a394246299e9a16badce0e38
 
 require "download_strategy"
 
@@ -77,16 +77,16 @@ end
 class IsonapseAlpha < Formula
   desc "Policy-first AI governance for Claude Code and beyond (alpha channel)"
   homepage "https://github.com/Isonapse/isonapse"
-  version "0.2.0-beta-alpha.c85ba49"
+  version "0.2.0-beta-alpha.8415282"
 
   conflicts_with "isonapse", because: "both install the isonapse binaries (channel variants)"
   conflicts_with "isonapse-beta", because: "both install the isonapse binaries (channel variants)"
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-c85ba49/isonapse-alpha-c85ba49-aarch64-apple-darwin.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-8415282/isonapse-alpha-8415282-aarch64-apple-darwin.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "d49abfb45ea81806f7c2e54a9c874e8bdf6f880a6c9e50acd8cbff1343360f72"
+      sha256 "4d8b675ecf9626c2bd8bef5a35a6a4d625c663756bf71b078fb9b14cf301fee4"
     end
     # macOS x86_64 is intentionally absent: the release build matrix
     # ships aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
@@ -94,9 +94,9 @@ class IsonapseAlpha < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-c85ba49/isonapse-alpha-c85ba49-x86_64-unknown-linux-gnu.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-8415282/isonapse-alpha-8415282-x86_64-unknown-linux-gnu.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "53059fee99bd1429521ce9949d05bbec7b544af14cec024688e61f11fd36ce30"
+      sha256 "78c19a5612de24e4d340fe1a0f72e21d69224f93a394246299e9a16badce0e38"
     end
   end
 
@@ -121,6 +121,6 @@ class IsonapseAlpha < Formula
   end
 
   test do
-    assert_match "0.2.0-beta+alpha.c85ba49", shell_output("#{bin}/isonapse --version")
+    assert_match "0.2.0-beta+alpha.8415282", shell_output("#{bin}/isonapse --version")
   end
 end
