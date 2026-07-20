@@ -4,15 +4,16 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-beta.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every beta release.
-# Placeholders: beta-40f0e11 0.1.0 beta 40f0e11
-# c0cdfb42f381e0db5682eee43e3b5805f8e3da52892ac32d3e1cf0597d520b18 e0d1a9fcd218c708a9181a66ba056f7e221d1cccab0f72b4e61ae2614d7f0980
+# Placeholders: beta-15f89c4 0.2.0-beta beta 15f89c4 15f89c40a81eef1bc631a7f7cbe3290593bc544e
+# e3d5341e5411eea91fc5a531d3602ce697d7ea516599016ca4d329b9e03d14e4 0007feebc22d3c79ea857c03e441de3bf7115d1800ac33a23084cdc3dfa00a5c
 
 require "download_strategy"
 
 # Downloads release assets from a PRIVATE GitHub repository via the
 # REST asset API. The beta channel (invited testers) stays private, so
 # this formula keeps the token strategy: HOMEBREW_GITHUB_API_TOKEN or
-# GITHUB_TOKEN with 'repo' scope.
+# GITHUB_TOKEN authorized to read Isonapse/isonapse-releases (fine-grained:
+# repository Contents read; classic: 'repo' scope).
 class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
   def initialize(url, name, version, **meta)
     super
@@ -47,10 +48,13 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
 
     raise CurlDownloadStrategyError, <<~EOS
       The Isonapse beta channel is private. Set HOMEBREW_GITHUB_API_TOKEN
-      (or GITHUB_TOKEN) to a GitHub personal access token with 'repo'
-      scope, then retry:
-        export HOMEBREW_GITHUB_API_TOKEN=ghp_...
+      (or GITHUB_TOKEN) to a GitHub personal access token authorized to read
+      Isonapse/isonapse-releases. Grant a fine-grained token that repository's
+      Contents read permission, or grant a classic token the 'repo' scope.
+      Then retry:
+        export HOMEBREW_GITHUB_API_TOKEN="YOUR_PRIVATE_BETA_TOKEN"
         brew install isonapse/tap/isonapse-beta
+      Replace YOUR_PRIVATE_BETA_TOKEN with the token from your invitation.
     EOS
   end
 
@@ -71,54 +75,92 @@ end
 
 # Isonapse — beta channel formula.
 # Its immutable release payload is unchanged; conflict metadata is normalized
-# as one complete tested private tap cohort for the alpha release.
-# Verified source commit: 40f0e116f6d9ad672cf3728b1b2fcc4fe585297a
+# as one complete tested private tap cohort for the beta release.
+# Verified source commit: 15f89c40a81eef1bc631a7f7cbe3290593bc544e
 class IsonapseBeta < Formula
   desc "Policy-first AI governance for Claude Code and beyond (beta channel)"
-  homepage "https://github.com/Isonapse/isonapse"
-  version "0.1.0-beta.40f0e11"
+  homepage "https://developer.isonapse.com"
+  version "0.2.0-beta+beta.15f89c4"
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-40f0e11/isonapse-beta-40f0e11-aarch64-apple-darwin.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-15f89c4/isonapse-beta-15f89c4-aarch64-apple-darwin.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "c0cdfb42f381e0db5682eee43e3b5805f8e3da52892ac32d3e1cf0597d520b18"
+      sha256 "e3d5341e5411eea91fc5a531d3602ce697d7ea516599016ca4d329b9e03d14e4"
     end
-    # macOS x86_64 is intentionally absent: the release build matrix
-    # ships aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
+    # Intel macOS is unsupported in Wave 1. The release build matrix ships
+    # aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-40f0e11/isonapse-beta-40f0e11-x86_64-unknown-linux-gnu.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-15f89c4/isonapse-beta-15f89c4-x86_64-unknown-linux-gnu.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "e0d1a9fcd218c708a9181a66ba056f7e221d1cccab0f72b4e61ae2614d7f0980"
+      sha256 "0007feebc22d3c79ea857c03e441de3bf7115d1800ac33a23084cdc3dfa00a5c"
     end
   end
 
   conflicts_with "isonapse-alpha", because: "both install the isonapse binaries (channel variants)"
 
   def install
-    bin.install "isonapse", "isonapse-hook", "isonapse-controlplane", "isonapse-server"
+    bin.install "isonapse", "isonapse-hook", "isonapse-controlplane"
+    # The EULA and third-party notices ship in every archive; keep them
+    # in the keg. THIRD_PARTY_NOTICES.md = downloaded model notices;
+    # THIRD_PARTY_DEPENDENCIES.md = compiled-in crate attributions.
+    prefix.install "LICENSE.md"
+    prefix.install "THIRD_PARTY_NOTICES.md"
+    prefix.install "THIRD_PARTY_DEPENDENCIES.md"
     # isonapse-update drives the curl|sh channel-switch flow; under
     # brew the package manager owns upgrades, so it is not installed.
   end
 
   def caveats
     <<~EOS
-      Beta channel: private — downloads need a GitHub token with
-      'repo' scope in HOMEBREW_GITHUB_API_TOKEN (or GITHUB_TOKEN).
+      Beta channel: private — downloads need a GitHub token authorized to read
+      Isonapse/isonapse-releases in HOMEBREW_GITHUB_API_TOKEN (or GITHUB_TOKEN).
+      Use repository Contents read for a fine-grained token, or 'repo' scope
+      for a classic token.
 
       Get started:
         isonapse hook init
+        isonapse hook start
+        isonapse hook status
+
+      Optional local intelligence (skippable):
+        isonapse hook intel download
+
+      This software is governed by the Isonapse Agent Hook Public Beta EULA (free for
+      personal testing, research, and internal, non-production evaluation):
+        #{opt_prefix}/LICENSE.md
+      Third-party model notices:
+        #{opt_prefix}/THIRD_PARTY_NOTICES.md
+      Third-party dependency licenses (or run `isonapse licenses`):
+        #{opt_prefix}/THIRD_PARTY_DEPENDENCIES.md
 
       Upgrades: `brew upgrade isonapse-beta` (the formula advances on
-      every beta promotion). Switching channels is explicit:
-        brew uninstall isonapse-beta && brew install isonapse/tap/isonapse
+      every beta promotion). Switching to the private alpha ring is explicit:
+        brew uninstall isonapse-beta && brew install isonapse/tap/isonapse-alpha
+      The plain isonapse formula is published separately at the public-main launch.
     EOS
   end
 
   test do
-    assert_match "0.1.0+beta.40f0e11", shell_output("#{bin}/isonapse --version")
+    assert_match "0.2.0-beta+beta.15f89c4", shell_output("#{bin}/isonapse --version")
+    assert_predicate bin/"isonapse-hook", :executable?
+    assert_match "0.2.0-beta+beta.15f89c4", shell_output("#{bin}/isonapse-hook --version")
+    assert_predicate bin/"isonapse-controlplane", :executable?
+    assert_match "Isonapse local control plane", shell_output("#{bin}/isonapse-controlplane --help")
+
+    ["LICENSE.md", "THIRD_PARTY_NOTICES.md", "THIRD_PARTY_DEPENDENCIES.md"].each do |document|
+      assert_predicate prefix/document, :file?
+      assert_operator (prefix/document).size, :>, 0
+    end
+
+    architecture = shell_output("file #{bin}/isonapse")
+    if OS.mac?
+      assert_match "arm64", architecture
+    elsif OS.linux?
+      assert_match "x86-64", architecture
+    end
   end
 end
