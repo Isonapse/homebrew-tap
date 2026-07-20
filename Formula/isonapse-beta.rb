@@ -4,7 +4,7 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-beta.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every beta release.
-# Placeholders: beta-40f0e11 0.2.0-beta beta 40f0e11
+# Placeholders: beta-40f0e11 0.1.0 beta 40f0e11
 # c0cdfb42f381e0db5682eee43e3b5805f8e3da52892ac32d3e1cf0597d520b18 e0d1a9fcd218c708a9181a66ba056f7e221d1cccab0f72b4e61ae2614d7f0980
 
 require "download_strategy"
@@ -69,18 +69,14 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
   end
 end
 
-# Isonapse — beta channel (invited testers; promoted from alpha after
-# internal validation). Tracks the immutable beta-<sha>
-# releases. One formula per channel: `isonapse` (main / public beta),
-# `isonapse-beta` (this one), `isonapse-alpha` (inner ring). All three
-# install the same four binaries and therefore conflict.
+# Isonapse — beta channel formula.
+# Its immutable release payload is unchanged; conflict metadata is normalized
+# as one complete tested private tap cohort for the alpha release.
+# Verified source commit: 40f0e116f6d9ad672cf3728b1b2fcc4fe585297a
 class IsonapseBeta < Formula
   desc "Policy-first AI governance for Claude Code and beyond (beta channel)"
   homepage "https://github.com/Isonapse/isonapse"
-  version "0.2.0-beta-beta.40f0e11"
-
-  conflicts_with "isonapse", because: "both install the isonapse binaries (channel variants)"
-  conflicts_with "isonapse-alpha", because: "both install the isonapse binaries (channel variants)"
+  version "0.1.0-beta.40f0e11"
 
   on_macos do
     on_arm do
@@ -99,6 +95,8 @@ class IsonapseBeta < Formula
       sha256 "e0d1a9fcd218c708a9181a66ba056f7e221d1cccab0f72b4e61ae2614d7f0980"
     end
   end
+
+  conflicts_with "isonapse-alpha", because: "both install the isonapse binaries (channel variants)"
 
   def install
     bin.install "isonapse", "isonapse-hook", "isonapse-controlplane", "isonapse-server"
@@ -121,6 +119,6 @@ class IsonapseBeta < Formula
   end
 
   test do
-    assert_match "0.2.0-beta+beta.40f0e11", shell_output("#{bin}/isonapse --version")
+    assert_match "0.1.0+beta.40f0e11", shell_output("#{bin}/isonapse --version")
   end
 end
