@@ -75,7 +75,7 @@ end
 
 # Isonapse — beta channel formula.
 # Its immutable release payload is unchanged; conflict metadata is normalized
-# as one complete tested private tap cohort for the beta release.
+# as one complete tested public tap cohort for the main release.
 # Verified source commit: 8fd1a1a582c58baaaf14dd98f5ccf455f1ac929b
 class IsonapseBeta < Formula
   desc "Policy-first AI governance for Claude Code and beyond (beta channel)"
@@ -100,6 +100,7 @@ class IsonapseBeta < Formula
     end
   end
 
+  conflicts_with "isonapse", because: "both install the isonapse binaries (channel variants)"
   conflicts_with "isonapse-alpha", because: "both install the isonapse binaries (channel variants)"
 
   def install
