@@ -74,8 +74,9 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
 end
 
 # Isonapse — beta channel formula.
-# Its immutable release payload is unchanged; conflict metadata is normalized
-# as one complete tested public tap cohort for the main release.
+# Its immutable release payload is unchanged; cross-channel conflicts are removed
+# for the complete tested public tap cohort in the alpha release.
+# Shared binary names enforce one linked channel without loading sibling formulae.
 # Verified source commit: 8fd1a1a582c58baaaf14dd98f5ccf455f1ac929b
 class IsonapseBeta < Formula
   desc "Policy-first AI governance for Claude Code and beyond (beta channel)"
@@ -99,9 +100,6 @@ class IsonapseBeta < Formula
       sha256 "69e125a397dfb42b6a54f90a8f41801f38078f0f3ed96a893dd6e3b86a7e466d"
     end
   end
-
-  conflicts_with "isonapse", because: "both install the isonapse binaries (channel variants)"
-  conflicts_with "isonapse-alpha", because: "both install the isonapse binaries (channel variants)"
 
   def install
     bin.install "isonapse", "isonapse-hook", "isonapse-controlplane"

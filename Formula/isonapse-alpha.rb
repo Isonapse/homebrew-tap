@@ -4,8 +4,8 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-alpha.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every alpha release.
-# Placeholders: alpha-c2908c5 0.2.0-beta alpha c2908c5 c2908c5e1781af389488eea04529e6d678126be5
-# 9d3d9899a1a63ba21781708ca1b5d5e6d3adf9ce545c6d6b97fd0cc2d7272c95 8fae061dab392ff4a2405a74f06d5e49410d455c8f62562e8b32f515b6f8cf24
+# Placeholders: alpha-1a517dc 0.2.0-beta alpha 1a517dc 1a517dc3e437f4316e31a43a60affa0f388a207a
+# 8af6da1c9236dc2de779a742c4dc37f3f7f5dde3ddfc92706dee38e0fc934e73 26db48e1e5f8ef169d18c01af510cacbe30e7936137c028acee341e726a9488a
 
 require "download_strategy"
 
@@ -75,19 +75,20 @@ class GitHubPrivateReleaseDownloadStrategy < CurlDownloadStrategy
 end
 
 # Isonapse — alpha channel formula.
-# Its immutable release payload is unchanged; conflict metadata is normalized
-# as one complete tested public tap cohort for the main release.
-# Verified source commit: c2908c5e1781af389488eea04529e6d678126be5
+# Its immutable release payload is unchanged; cross-channel conflicts are removed
+# for the complete tested public tap cohort in the alpha release.
+# Shared binary names enforce one linked channel without loading sibling formulae.
+# Verified source commit: 1a517dc3e437f4316e31a43a60affa0f388a207a
 class IsonapseAlpha < Formula
   desc "Policy-first AI governance for Claude Code and beyond (alpha channel)"
   homepage "https://developer.isonapse.com"
-  version "0.2.0-beta+alpha.c2908c5"
+  version "0.2.0-beta+alpha.1a517dc"
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-c2908c5/isonapse-alpha-c2908c5-aarch64-apple-darwin.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-1a517dc/isonapse-alpha-1a517dc-aarch64-apple-darwin.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "9d3d9899a1a63ba21781708ca1b5d5e6d3adf9ce545c6d6b97fd0cc2d7272c95"
+      sha256 "8af6da1c9236dc2de779a742c4dc37f3f7f5dde3ddfc92706dee38e0fc934e73"
     end
     # Intel macOS is unsupported in Wave 1. The release build matrix ships
     # aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
@@ -95,14 +96,11 @@ class IsonapseAlpha < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-c2908c5/isonapse-alpha-c2908c5-x86_64-unknown-linux-gnu.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-1a517dc/isonapse-alpha-1a517dc-x86_64-unknown-linux-gnu.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "8fae061dab392ff4a2405a74f06d5e49410d455c8f62562e8b32f515b6f8cf24"
+      sha256 "26db48e1e5f8ef169d18c01af510cacbe30e7936137c028acee341e726a9488a"
     end
   end
-
-  conflicts_with "isonapse", because: "both install the isonapse binaries (channel variants)"
-  conflicts_with "isonapse-beta", because: "both install the isonapse binaries (channel variants)"
 
   def install
     bin.install "isonapse", "isonapse-hook", "isonapse-controlplane"
@@ -142,14 +140,14 @@ class IsonapseAlpha < Formula
       Upgrades: `brew upgrade isonapse-alpha` (the formula advances on
       every alpha release). Switching to the private beta ring is explicit:
         brew uninstall isonapse-alpha && brew install isonapse/tap/isonapse-beta
-      The plain isonapse formula is published separately at the public-main launch.
+      Use the same uninstall-before-install flow for any channel switch.
     EOS
   end
 
   test do
-    assert_match "0.2.0-beta+alpha.c2908c5", shell_output("#{bin}/isonapse --version")
+    assert_match "0.2.0-beta+alpha.1a517dc", shell_output("#{bin}/isonapse --version")
     assert_predicate bin/"isonapse-hook", :executable?
-    assert_match "0.2.0-beta+alpha.c2908c5", shell_output("#{bin}/isonapse-hook --version")
+    assert_match "0.2.0-beta+alpha.1a517dc", shell_output("#{bin}/isonapse-hook --version")
     assert_predicate bin/"isonapse-controlplane", :executable?
     assert_match "Isonapse local control plane", shell_output("#{bin}/isonapse-controlplane --help")
 

@@ -15,8 +15,9 @@
 # rings stay on isonapse-releases and never appear there.
 
 # Isonapse — main channel formula.
-# Its immutable release payload is unchanged; conflict metadata is normalized
-# as one complete tested public tap cohort for the main release.
+# Its immutable release payload is unchanged; cross-channel conflicts are removed
+# for the complete tested public tap cohort in the alpha release.
+# Shared binary names enforce one linked channel without loading sibling formulae.
 # Verified source commit: 72bb7394926c5825b6c03d161b88f7251783f8d6
 class Isonapse < Formula
   desc "Policy-first AI governance for Claude Code and beyond"
@@ -38,9 +39,6 @@ class Isonapse < Formula
       sha256 "ecfb4f0b0225e5a2b933cef3461b69884d970a6ec20b8a334753b1c538a8655b"
     end
   end
-
-  conflicts_with "isonapse-alpha", because: "both install the isonapse binaries (channel variants)"
-  conflicts_with "isonapse-beta", because: "both install the isonapse binaries (channel variants)"
 
   def install
     bin.install "isonapse", "isonapse-hook", "isonapse-controlplane"
