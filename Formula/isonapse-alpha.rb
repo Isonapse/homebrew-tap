@@ -4,8 +4,8 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-alpha.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every alpha release.
-# Placeholders: alpha-1a517dc 0.2.0-beta alpha 1a517dc 1a517dc3e437f4316e31a43a60affa0f388a207a
-# 8af6da1c9236dc2de779a742c4dc37f3f7f5dde3ddfc92706dee38e0fc934e73 26db48e1e5f8ef169d18c01af510cacbe30e7936137c028acee341e726a9488a
+# Placeholders: alpha-fcd6bda 0.2.0-beta alpha fcd6bda fcd6bda4c5b2835580154bd64dafafd57d1a7005
+# efe48460f5f7c0f955effffceb0d9b7858f0f397808a7bd1dd1ad22f66de7ab0 9d50d160af0daea69ed1182baa7f7690766ee68208738b3060bd9773513e97c5
 
 require "download_strategy"
 
@@ -78,17 +78,17 @@ end
 # Its immutable release payload is unchanged; cross-channel conflicts are removed
 # for the complete tested public tap cohort in the alpha release.
 # Shared binary names enforce one linked channel without loading sibling formulae.
-# Verified source commit: 1a517dc3e437f4316e31a43a60affa0f388a207a
+# Verified source commit: fcd6bda4c5b2835580154bd64dafafd57d1a7005
 class IsonapseAlpha < Formula
   desc "Policy-first AI governance for Claude Code and beyond (alpha channel)"
   homepage "https://developer.isonapse.com"
-  version "0.2.0-beta+alpha.1a517dc"
+  version "0.2.0-beta+alpha.fcd6bda"
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-1a517dc/isonapse-alpha-1a517dc-aarch64-apple-darwin.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-fcd6bda/isonapse-alpha-fcd6bda-aarch64-apple-darwin.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "8af6da1c9236dc2de779a742c4dc37f3f7f5dde3ddfc92706dee38e0fc934e73"
+      sha256 "efe48460f5f7c0f955effffceb0d9b7858f0f397808a7bd1dd1ad22f66de7ab0"
     end
     # Intel macOS is unsupported in Wave 1. The release build matrix ships
     # aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
@@ -96,9 +96,9 @@ class IsonapseAlpha < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-1a517dc/isonapse-alpha-1a517dc-x86_64-unknown-linux-gnu.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-fcd6bda/isonapse-alpha-fcd6bda-x86_64-unknown-linux-gnu.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "26db48e1e5f8ef169d18c01af510cacbe30e7936137c028acee341e726a9488a"
+      sha256 "9d50d160af0daea69ed1182baa7f7690766ee68208738b3060bd9773513e97c5"
     end
   end
 
@@ -145,9 +145,9 @@ class IsonapseAlpha < Formula
   end
 
   test do
-    assert_match "0.2.0-beta+alpha.1a517dc", shell_output("#{bin}/isonapse --version")
+    assert_match "0.2.0-beta+alpha.fcd6bda", shell_output("#{bin}/isonapse --version")
     assert_predicate bin/"isonapse-hook", :executable?
-    assert_match "0.2.0-beta+alpha.1a517dc", shell_output("#{bin}/isonapse-hook --version")
+    assert_match "0.2.0-beta+alpha.fcd6bda", shell_output("#{bin}/isonapse-hook --version")
     assert_predicate bin/"isonapse-controlplane", :executable?
     assert_match "Isonapse local control plane", shell_output("#{bin}/isonapse-controlplane --help")
 
