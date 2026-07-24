@@ -75,7 +75,7 @@ end
 
 # Isonapse — beta channel formula.
 # Its immutable release payload is unchanged; cross-channel conflicts are removed
-# for the complete tested public tap cohort in the beta release.
+# for the complete tested public tap cohort in the alpha release.
 # Shared binary names enforce one linked channel without loading sibling formulae.
 # Verified source commit: bce61dba66f324b1058afceb44fbc145120a7ad0
 class IsonapseBeta < Formula
