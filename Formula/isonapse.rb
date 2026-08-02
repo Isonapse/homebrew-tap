@@ -16,7 +16,7 @@
 
 # Isonapse — main channel formula.
 # Its immutable release payload is unchanged; cross-channel conflicts are removed
-# for the complete tested public tap cohort in the main release.
+# for the complete tested public tap cohort in the alpha release.
 # Shared binary names enforce one linked channel without loading sibling formulae.
 # Verified source commit: 459f9e7dce3d818dd993e423604e52a4b83f1dbb
 class Isonapse < Formula
