@@ -4,8 +4,8 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-beta.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every beta release.
-# Placeholders: beta-881f594672d0ec140b2ceb5b0707ce644f555a0e 0.3.0-beta beta 881f594 881f594672d0ec140b2ceb5b0707ce644f555a0e
-# 820952e752121f1824187b8f5f568eea2c09e0e37928ee96040dd52525b2330e 50d6a968de7580f7b6353483b8398a1414403a2e0251efdfc6011b7b107e6547
+# Placeholders: beta-31c38051524faf74bb26a3fb9b659c0d0a791f9e 0.3.0-beta beta 31c3805 31c38051524faf74bb26a3fb9b659c0d0a791f9e
+# cc025341931408e0ec33f15d3da64c1085bedb2e6061ddf9193d8224e10ea6bd 5548de4d4fc4fceaaa93bb0b321d970260ccab942edc3ce530b392ff6128f037
 
 require "download_strategy"
 
@@ -80,19 +80,19 @@ end
 # so only one can be linked at a time. Formulae deliberately do not declare
 # `conflicts_with`, which would load an unrequested sibling from an otherwise
 # untrusted tap.
-# Verified source commit: 881f594672d0ec140b2ceb5b0707ce644f555a0e
+# Verified source commit: 31c38051524faf74bb26a3fb9b659c0d0a791f9e
 class IsonapseBeta < Formula
   desc "Policy-first AI governance for Claude Code and beyond (beta channel)"
   homepage "https://developer.isonapse.com"
-  version "0.3.0-beta+release.881f594"
-  revision 1277
-  version_scheme 1277
+  version "0.3.0-beta+release.31c3805"
+  revision 1640
+  version_scheme 1640
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-881f594672d0ec140b2ceb5b0707ce644f555a0e/isonapse-candidate-881f594672d0ec140b2ceb5b0707ce644f555a0e-aarch64-apple-darwin.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-31c38051524faf74bb26a3fb9b659c0d0a791f9e/isonapse-candidate-31c38051524faf74bb26a3fb9b659c0d0a791f9e-aarch64-apple-darwin.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "820952e752121f1824187b8f5f568eea2c09e0e37928ee96040dd52525b2330e"
+      sha256 "cc025341931408e0ec33f15d3da64c1085bedb2e6061ddf9193d8224e10ea6bd"
     end
     # Intel macOS is unsupported in Wave 1. The release build matrix ships
     # aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
@@ -100,9 +100,9 @@ class IsonapseBeta < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-881f594672d0ec140b2ceb5b0707ce644f555a0e/isonapse-candidate-881f594672d0ec140b2ceb5b0707ce644f555a0e-x86_64-unknown-linux-gnu.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/beta-31c38051524faf74bb26a3fb9b659c0d0a791f9e/isonapse-candidate-31c38051524faf74bb26a3fb9b659c0d0a791f9e-x86_64-unknown-linux-gnu.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "50d6a968de7580f7b6353483b8398a1414403a2e0251efdfc6011b7b107e6547"
+      sha256 "5548de4d4fc4fceaaa93bb0b321d970260ccab942edc3ce530b392ff6128f037"
     end
   end
 
@@ -116,16 +116,16 @@ class IsonapseBeta < Formula
     # THIRD_PARTY_DEPENDENCIES.md = native build-group attributions, including build-time crates.
     # Preserve original signed bytes; context is routing, never signing authority.
     if OS.mac?
-      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d3838316635" \
-                     "39343637326430656331343062326365623562303730376365363434663535356130652d61617263" \
+      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d3331633338" \
+                     "30353135323466616637346262323661336662396236353963306430613739316639652d61617263" \
                      "6836342d6170706c652d64617277696e2e7461722e677a222c0a202022617263686976655f736861" \
-                     "323536223a2022383230393532653735323132316631383234313837623866356635363865656132" \
-                     "63303965306533373932386565393630343064643532353235623233333065222c0a202022626173" \
+                     "323536223a2022636330323533343139333134303865306563333366313564336461363463313038" \
+                     "35626564623265363036316464663931393364383232346531306561366264222c0a202022626173" \
                      "655f76657273696f6e223a2022302e332e302d62657461222c0a202022666f726d6174223a202269" \
                      "736f6e617073652d6275696c642d6964656e74697479222c0a202022666f726d61745f7665727369" \
                      "6f6e223a20332c0a20202270726f64756374223a2022686f6f6b222c0a202022736f757263655f63" \
-                     "6f6d6d6974223a202238383166353934363732643065633134306232636562356230373037636536" \
-                     "343466353535613065222c0a202022746172676574223a2022616172636836342d6170706c652d64" \
+                     "6f6d6d6974223a202233316333383035313532346661663734626232366133666239623635396330" \
+                     "643061373931663965222c0a202022746172676574223a2022616172636836342d6170706c652d64" \
                      "617277696e220a7d0a"
       signature_hex = "69736f6e617073652d72656c656173652d7369676e61747572652d76310a7373682d656432353531" \
                       "39204141414143334e7a6143316c5a4449314e544535414141414948635445397474344766624977" \
@@ -142,22 +142,22 @@ class IsonapseBeta < Formula
                       "4151414141444d414141414c63334e6f4c57566b4d6a55314d546b414141416764784d5432323367" \
                       "5a39736a425377504257337854667478577a4679394f37560a6d4b534b312b68365a626b41414141" \
                       "5161584e76626d467763325574636d56735a57467a5a5141414141414141414147633268684e5445" \
-                      "7941414141557741414141747a633267745a5751790a4e5455784f514141414542384579417a6548" \
-                      "71505a377355484d365879316a686c6671646b62395831306c74473736316a572b46556f5869416e" \
-                      "5052614b586d59376a6830776354754d62780a356d5365674b444a4f6c784b5268634c4e724d460a" \
+                      "7941414141557741414141747a633267745a5751790a4e5455784f5141414145423155504b4b2f61" \
+                      "6b5358584465624443343535704e5253386c48694937646a49444f766d6c714d564d66506a473250" \
+                      "774b787932643331487a2f423137456f314c0a2b616b4832775a45486c66666d4e4d49564a49430a" \
                       "2d2d2d2d2d454e4420535348205349474e41545552452d2d2d2d2d0a"
-      identity_sha256 = "4122ce08933e3d1a1beae1ef8f876f412d4143530653f60e0c728116beaf4691"
+      identity_sha256 = "f32b4bc180af0998c3952bf039323b7ecc07157dc33fc1202ef21b8fd413620b"
     else
-      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d3838316635" \
-                     "39343637326430656331343062326365623562303730376365363434663535356130652d7838365f" \
+      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d3331633338" \
+                     "30353135323466616637346262323661336662396236353963306430613739316639652d7838365f" \
                      "36342d756e6b6e6f776e2d6c696e75782d676e752e7461722e677a222c0a20202261726368697665" \
-                     "5f736861323536223a20223530643661393638646537353830663762363335333438336238333938" \
-                     "6131343134343033613265303235316566646663363031316237623130376536353437222c0a2020" \
+                     "5f736861323536223a20223535343864653464346663346663656161613933626230623332316439" \
+                     "3730323630636361623934326564633363653533306233393266663631323866303337222c0a2020" \
                      "22626173655f76657273696f6e223a2022302e332e302d62657461222c0a202022666f726d617422" \
                      "3a202269736f6e617073652d6275696c642d6964656e74697479222c0a202022666f726d61745f76" \
                      "657273696f6e223a20332c0a20202270726f64756374223a2022686f6f6b222c0a202022736f7572" \
-                     "63655f636f6d6d6974223a2022383831663539343637326430656331343062326365623562303730" \
-                     "37636536343466353535613065222c0a202022746172676574223a20227838365f36342d756e6b6e" \
+                     "63655f636f6d6d6974223a2022333163333830353135323466616637346262323661336662396236" \
+                     "35396330643061373931663965222c0a202022746172676574223a20227838365f36342d756e6b6e" \
                      "6f776e2d6c696e75782d676e75220a7d0a"
       signature_hex = "69736f6e617073652d72656c656173652d7369676e61747572652d76310a7373682d656432353531" \
                       "39204141414143334e7a6143316c5a4449314e544535414141414948635445397474344766624977" \
@@ -174,11 +174,11 @@ class IsonapseBeta < Formula
                       "4151414141444d414141414c63334e6f4c57566b4d6a55314d546b414141416764784d5432323367" \
                       "5a39736a425377504257337854667478577a4679394f37560a6d4b534b312b68365a626b41414141" \
                       "5161584e76626d467763325574636d56735a57467a5a5141414141414141414147633268684e5445" \
-                      "7941414141557741414141747a633267745a5751790a4e5455784f51414141454468382b372b5067" \
-                      "4b6c6e725555454e4f7839614954456a4c4b6f35587961362b6c764e705770714f7a6672664b346f" \
-                      "374853784c51446d643371753250583831540a73374f51327a2f5554497a6b625a48454357774d0a" \
+                      "7941414141557741414141747a633267745a5751790a4e5455784f514141414541726f75396a6168" \
+                      "6452697a4c4855756559543575656e76685575786c314e486745454c7876366d33586a3045364672" \
+                      "49427458314949616b6e3735516d316a54450a634a536d5144455662624d536f2f3676786f63460a" \
                       "2d2d2d2d2d454e4420535348205349474e41545552452d2d2d2d2d0a"
-      identity_sha256 = "a24c54ead78c9e3818eaf42b12a7eb797b807d5306a8117006697a880c25e323"
+      identity_sha256 = "2266d5091caa49cf9c0cdec6a5c6d410db639103845735d447f11114611de5f9"
     end
     (bin/"build-identity.json").write [identity_hex].pack("H*")
     (bin/"build-identity.json.sig").write [signature_hex].pack("H*")
@@ -186,7 +186,7 @@ class IsonapseBeta < Formula
     (bin/"install-context.json").write "{\"build_identity_sha256\":\"#{identity_sha256}\"," \
                                        "\"channel\":\"beta\",\"format\":\"isonapse-install-context\"," \
                                        "\"format_version\":1," \
-                                       "\"source_commit\":\"881f594672d0ec140b2ceb5b0707ce644f555a0e\"}\n"
+                                       "\"source_commit\":\"31c38051524faf74bb26a3fb9b659c0d0a791f9e\"}\n"
     prefix.install "LICENSE.md"
     prefix.install "THIRD_PARTY_NOTICES.md"
     prefix.install "THIRD_PARTY_DEPENDENCIES.md"
@@ -230,16 +230,18 @@ class IsonapseBeta < Formula
         #{opt_prefix}/THIRD_PARTY_DEPENDENCIES.md
 
       Upgrades: `brew upgrade isonapse-beta` (the formula advances on
-      every beta promotion). Switching to the private alpha ring is explicit:
+      every beta promotion), then `isonapse hook restart` so the running
+      control plane uses the new build; until then it may report the replaced
+      hook binary as changed. Switching to the private alpha ring is explicit:
         brew uninstall isonapse-beta && brew install isonapse/tap/isonapse-alpha
       Use the same uninstall-before-install flow for any channel switch.
     EOS
   end
 
   test do
-    assert_match "0.3.0-beta+release.881f594", shell_output("#{bin}/isonapse --version")
+    assert_match "0.3.0-beta+release.31c3805", shell_output("#{bin}/isonapse --version")
     assert_predicate bin/"isonapse-hook", :executable?
-    assert_match "0.3.0-beta+release.881f594", shell_output("#{bin}/isonapse-hook --version")
+    assert_match "0.3.0-beta+release.31c3805", shell_output("#{bin}/isonapse-hook --version")
     assert_predicate bin/"isonapse-controlplane", :executable?
     assert_predicate bin/"isonapse-update", :executable?
     assert_predicate bin/"isonapse-integrity.dsse.json", :file?
