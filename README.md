@@ -5,7 +5,7 @@ release channel.
 
 | Formula | Channel | Access |
 |---|---|---|
-| `isonapse` | main (public beta) | anonymous — arrives with the first main release |
+| `isonapse` | main (public beta) | anonymous, no token needed |
 | `isonapse-beta` | beta | private ring — requires a GitHub token |
 | `isonapse-alpha` | alpha | private ring — requires a GitHub token |
 
@@ -26,10 +26,10 @@ brew install isonapse/tap/isonapse-beta
 
 ## Beta marking
 
-These formulas install beta software. Versions carry a `-beta` suffix —
-`brew` shows e.g. `0.2.0-beta-main.a3f5d2e`, and the installed binary
-reports `isonapse 0.2.0-beta+main.a3f5d2e`. The suffix is dropped when
-Isonapse graduates from beta.
+These formulas install beta software. Versions carry a `-beta` label, and
+`isonapse --version` names the build, for example
+`isonapse 0.3.0-beta+release.bce6109`. The label is dropped when Isonapse
+graduates from beta.
 
 ## Notes
 
