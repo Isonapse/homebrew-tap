@@ -4,8 +4,8 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse-alpha.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every alpha release.
-# Placeholders: alpha-df579b37b909cc9a7f9ee8decc6b78949e5b5fc0 0.3.0-beta alpha df579b3 df579b37b909cc9a7f9ee8decc6b78949e5b5fc0
-# df825bfb039753b542cc960dfa3fcb63071a77e86816c8ef398bd8edf037b624 abe7abbc6580419791806c1831f2e9377b3043e2bdd57fc9742b73e002bb0849
+# Placeholders: alpha-be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c 0.3.0-beta alpha be0cc8b be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c
+# 8d79a9d9b33f85974aeca282ffc8730f88fa632fb3db96d77d407e23482d2092 c7d501a872494645b49cf41296f8bb36586613572dd7783aa69a5c4ffa7889d0
 
 require "download_strategy"
 
@@ -81,19 +81,19 @@ end
 # so only one can be linked at a time. Formulae deliberately do not declare
 # `conflicts_with`, which would load an unrequested sibling from an otherwise
 # untrusted tap.
-# Verified source commit: df579b37b909cc9a7f9ee8decc6b78949e5b5fc0
+# Verified source commit: be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c
 class IsonapseAlpha < Formula
   desc "Policy-first AI governance for Claude Code and beyond (alpha channel)"
   homepage "https://developer.isonapse.com"
-  version "0.3.0-beta+release.df579b3"
-  revision 2024
-  version_scheme 2024
+  version "0.3.0-beta+release.be0cc8b"
+  revision 2589
+  version_scheme 2589
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-df579b37b909cc9a7f9ee8decc6b78949e5b5fc0/isonapse-candidate-df579b37b909cc9a7f9ee8decc6b78949e5b5fc0-aarch64-apple-darwin.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c/isonapse-candidate-be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c-aarch64-apple-darwin.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "df825bfb039753b542cc960dfa3fcb63071a77e86816c8ef398bd8edf037b624"
+      sha256 "8d79a9d9b33f85974aeca282ffc8730f88fa632fb3db96d77d407e23482d2092"
     end
     # Intel macOS is unsupported in Wave 1. The release build matrix ships
     # aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
@@ -101,9 +101,9 @@ class IsonapseAlpha < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-df579b37b909cc9a7f9ee8decc6b78949e5b5fc0/isonapse-candidate-df579b37b909cc9a7f9ee8decc6b78949e5b5fc0-x86_64-unknown-linux-gnu.tar.gz",
+      url "https://github.com/Isonapse/isonapse-releases/releases/download/alpha-be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c/isonapse-candidate-be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c-x86_64-unknown-linux-gnu.tar.gz",
           using: GitHubPrivateReleaseDownloadStrategy
-      sha256 "abe7abbc6580419791806c1831f2e9377b3043e2bdd57fc9742b73e002bb0849"
+      sha256 "c7d501a872494645b49cf41296f8bb36586613572dd7783aa69a5c4ffa7889d0"
     end
   end
 
@@ -117,16 +117,16 @@ class IsonapseAlpha < Formula
     # THIRD_PARTY_DEPENDENCIES.md = native build-group attributions, including build-time crates.
     # Preserve original signed bytes; context is routing, never signing authority.
     if OS.mac?
-      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6466353739" \
-                     "62333762393039636339613766396565386465636336623738393439653562356663302d61617263" \
+      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6265306363" \
+                     "38623164306531326162386539353335616132613033643630306334653032316134632d61617263" \
                      "6836342d6170706c652d64617277696e2e7461722e677a222c0a202022617263686976655f736861" \
-                     "323536223a2022646638323562666230333937353362353432636339363064666133666362363330" \
-                     "37316137376538363831366338656633393862643865646630333762363234222c0a202022626173" \
+                     "323536223a2022386437396139643962333366383539373461656361323832666663383733306638" \
+                     "38666136333266623364623936643737643430376532333438326432303932222c0a202022626173" \
                      "655f76657273696f6e223a2022302e332e302d62657461222c0a202022666f726d6174223a202269" \
                      "736f6e617073652d6275696c642d6964656e74697479222c0a202022666f726d61745f7665727369" \
                      "6f6e223a20332c0a20202270726f64756374223a2022686f6f6b222c0a202022736f757263655f63" \
-                     "6f6d6d6974223a202264663537396233376239303963633961376639656538646563633662373839" \
-                     "343965356235666330222c0a202022746172676574223a2022616172636836342d6170706c652d64" \
+                     "6f6d6d6974223a202262653063633862316430653132616238653935333561613261303364363030" \
+                     "633465303231613463222c0a202022746172676574223a2022616172636836342d6170706c652d64" \
                      "617277696e220a7d0a"
       signature_hex = "69736f6e617073652d72656c656173652d7369676e61747572652d76310a7373682d656432353531" \
                       "39204141414143334e7a6143316c5a4449314e544535414141414948635445397474344766624977" \
@@ -143,22 +143,22 @@ class IsonapseAlpha < Formula
                       "4151414141444d414141414c63334e6f4c57566b4d6a55314d546b414141416764784d5432323367" \
                       "5a39736a425377504257337854667478577a4679394f37560a6d4b534b312b68365a626b41414141" \
                       "5161584e76626d467763325574636d56735a57467a5a5141414141414141414147633268684e5445" \
-                      "7941414141557741414141747a633267745a5751790a4e5455784f514141414541374d2b6a4d6642" \
-                      "6b347764773366484d73777630634b49623238567457646e437047564844384e5966376e2f317677" \
-                      "33456e73786b6767434f506c654239715a4b0a70514c666f6d436350737a3250394f78394645460a" \
+                      "7941414141557741414141747a633267745a5751790a4e5455784f514141414543345363574a5938" \
+                      "713671614758483374495856476e4a655a6f6d79316c676837586a585273434f2f4c785830324933" \
+                      "38304e4e52563070325455595331466b596f0a4a47354f7473357770384874476470454970344b0a" \
                       "2d2d2d2d2d454e4420535348205349474e41545552452d2d2d2d2d0a"
-      identity_sha256 = "553f2aaa23f162ebac335b51c673261f56a13a547bbe934b3dbd466213b62f64"
+      identity_sha256 = "b596bf1c85139a194baeded5f02e97eecc275d962be96be33c86990b6ecfa024"
     else
-      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6466353739" \
-                     "62333762393039636339613766396565386465636336623738393439653562356663302d7838365f" \
+      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6265306363" \
+                     "38623164306531326162386539353335616132613033643630306334653032316134632d7838365f" \
                      "36342d756e6b6e6f776e2d6c696e75782d676e752e7461722e677a222c0a20202261726368697665" \
-                     "5f736861323536223a20226162653761626263363538303431393739313830366331383331663265" \
-                     "3933373762333034336532626464353766633937343262373365303032626230383439222c0a2020" \
+                     "5f736861323536223a20226337643530316138373234393436343562343963663431323936663862" \
+                     "6233363538363631333537326464373738336161363961356334666661373838396430222c0a2020" \
                      "22626173655f76657273696f6e223a2022302e332e302d62657461222c0a202022666f726d617422" \
                      "3a202269736f6e617073652d6275696c642d6964656e74697479222c0a202022666f726d61745f76" \
                      "657273696f6e223a20332c0a20202270726f64756374223a2022686f6f6b222c0a202022736f7572" \
-                     "63655f636f6d6d6974223a2022646635373962333762393039636339613766396565386465636336" \
-                     "62373839343965356235666330222c0a202022746172676574223a20227838365f36342d756e6b6e" \
+                     "63655f636f6d6d6974223a2022626530636338623164306531326162386539353335616132613033" \
+                     "64363030633465303231613463222c0a202022746172676574223a20227838365f36342d756e6b6e" \
                      "6f776e2d6c696e75782d676e75220a7d0a"
       signature_hex = "69736f6e617073652d72656c656173652d7369676e61747572652d76310a7373682d656432353531" \
                       "39204141414143334e7a6143316c5a4449314e544535414141414948635445397474344766624977" \
@@ -175,11 +175,11 @@ class IsonapseAlpha < Formula
                       "4151414141444d414141414c63334e6f4c57566b4d6a55314d546b414141416764784d5432323367" \
                       "5a39736a425377504257337854667478577a4679394f37560a6d4b534b312b68365a626b41414141" \
                       "5161584e76626d467763325574636d56735a57467a5a5141414141414141414147633268684e5445" \
-                      "7941414141557741414141747a633267745a5751790a4e5455784f5141414145424235394770386f" \
-                      "36474e484e7057304e6a4e35357a64503553344f61654d6968387765644b326852314e4172344755" \
-                      "76343541436f7a326247676e584a636c32520a74524e4252354c583767674559536745746141420a" \
+                      "7941414141557741414141747a633267745a5751790a4e5455784f5141414145434d41487a53332f" \
+                      "416147655054774b3252516a34306a42725863724f46656d7937442b534f524f796b442b6e524565" \
+                      "54554f4d6a682f6c524b733232594b4f75460a474955445a7565743261527258377939594967490a" \
                       "2d2d2d2d2d454e4420535348205349474e41545552452d2d2d2d2d0a"
-      identity_sha256 = "7d9534876b01ef48387a0fa76817372c69776904f1c587461e010fa6392d84f3"
+      identity_sha256 = "8c7f29783f3e033ddf5a84c079972d0034336d49e9b9285b6ec8e6aa0d50698e"
     end
     (bin/"build-identity.json").write [identity_hex].pack("H*")
     (bin/"build-identity.json.sig").write [signature_hex].pack("H*")
@@ -187,7 +187,7 @@ class IsonapseAlpha < Formula
     (bin/"install-context.json").write "{\"build_identity_sha256\":\"#{identity_sha256}\"," \
                                        "\"channel\":\"alpha\",\"format\":\"isonapse-install-context\"," \
                                        "\"format_version\":1," \
-                                       "\"source_commit\":\"df579b37b909cc9a7f9ee8decc6b78949e5b5fc0\"}\n"
+                                       "\"source_commit\":\"be0cc8b1d0e12ab8e9535aa2a03d600c4e021a4c\"}\n"
     prefix.install "LICENSE.md"
     prefix.install "THIRD_PARTY_NOTICES.md"
     prefix.install "THIRD_PARTY_DEPENDENCIES.md"
@@ -247,9 +247,9 @@ class IsonapseAlpha < Formula
   end
 
   test do
-    assert_match "0.3.0-beta+release.df579b3", shell_output("#{bin}/isonapse --version")
+    assert_match "0.3.0-beta+release.be0cc8b", shell_output("#{bin}/isonapse --version")
     assert_predicate bin/"isonapse-hook", :executable?
-    assert_match "0.3.0-beta+release.df579b3", shell_output("#{bin}/isonapse-hook --version")
+    assert_match "0.3.0-beta+release.be0cc8b", shell_output("#{bin}/isonapse-hook --version")
     assert_predicate bin/"isonapse-controlplane", :executable?
     assert_predicate bin/"isonapse-update", :executable?
     assert_predicate bin/"isonapse-integrity.dsse.json", :file?
