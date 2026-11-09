@@ -4,34 +4,32 @@
 # RENDERED FILE — do not edit in the tap. Source template:
 # Isonapse/isonapse scripts/brew/isonapse.rb.tmpl, rendered by the
 # `brew` job in .github/workflows/release.yml on every main release.
-# Placeholders: main-bce610938cb9d55d69beae1fc1808237ef19c187 0.3.0-beta main bce6109 bce610938cb9d55d69beae1fc1808237ef19c187
-# 72db5a6998fb03fcaa0cf593386e5b7a260f8c76f19400eeff5226af30af590c c331de0761ac239a7809bde8ed8428f4aae7b6cc7b7cd477c8274610829ce95e
+# Placeholders: main-dfd2472ec4d2a15ae3ea80714abbb200363f5caa 0.3.0-beta main dfd2472 dfd2472ec4d2a15ae3ea80714abbb200363f5caa
+# 76b16c8155d53c97b687df3fae8dc8b9d55d37f85f9eee238289a137d44fcaec 7fd5767933c1c1aaa4a81b329d4655b8db3048dc2169bb41c33c79a5d336b45a
 #
 # ANONYMOUS DISTRIBUTION CONTRACT: this formula uses plain anonymous URLs.
 # The launch procedure verifies public visibility and credential-free
 # reachability on both supported platforms before accepting the distribution.
-# main-channel assets live on isonapse-public; the private alpha/beta
-# rings stay on isonapse-releases and never appear there.
+# Its assets live on isonapse-public. This rendered formula is public, so it
+# describes only the public install (OD-10, #987).
 
 # Isonapse — main channel (public beta). Tracks the immutable
-# main-<sha> releases. One formula per channel: `isonapse`
-# (this one), `isonapse-beta` (invited beta), `isonapse-alpha` (inner
-# ring). All three install the same binary names, so only one channel
-# can be linked at a time. Formulae deliberately do not declare
-# `conflicts_with`: that would make a fully qualified install evaluate
+# main-<sha> releases. Every Isonapse formula installs the same binary
+# names, so only one can be linked at a time. Formulae deliberately do not
+# declare `conflicts_with`: that would make a fully qualified install evaluate
 # unrequested sibling formulae from an otherwise untrusted tap.
-# Verified source commit: bce610938cb9d55d69beae1fc1808237ef19c187
+# Verified source commit: dfd2472ec4d2a15ae3ea80714abbb200363f5caa
 class Isonapse < Formula
   desc "Policy-first AI governance for Claude Code and beyond"
   homepage "https://github.com/Isonapse/isonapse-public"
-  version "0.3.0-beta+release.bce6109"
-  revision 2007
-  version_scheme 2007
+  version "0.3.0-beta+release.dfd2472"
+  revision 3328
+  version_scheme 3328
 
   on_macos do
     on_arm do
-      url "https://github.com/Isonapse/isonapse-public/releases/download/main-bce610938cb9d55d69beae1fc1808237ef19c187/isonapse-candidate-bce610938cb9d55d69beae1fc1808237ef19c187-aarch64-apple-darwin.tar.gz"
-      sha256 "72db5a6998fb03fcaa0cf593386e5b7a260f8c76f19400eeff5226af30af590c"
+      url "https://github.com/Isonapse/isonapse-public/releases/download/main-dfd2472ec4d2a15ae3ea80714abbb200363f5caa/isonapse-candidate-dfd2472ec4d2a15ae3ea80714abbb200363f5caa-aarch64-apple-darwin.tar.gz"
+      sha256 "76b16c8155d53c97b687df3fae8dc8b9d55d37f85f9eee238289a137d44fcaec"
     end
     # Intel macOS is unsupported in Wave 1. The release build matrix ships
     # aarch64-apple-darwin and x86_64-unknown-linux-gnu only.
@@ -39,8 +37,8 @@ class Isonapse < Formula
 
   on_linux do
     on_intel do
-      url "https://github.com/Isonapse/isonapse-public/releases/download/main-bce610938cb9d55d69beae1fc1808237ef19c187/isonapse-candidate-bce610938cb9d55d69beae1fc1808237ef19c187-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "c331de0761ac239a7809bde8ed8428f4aae7b6cc7b7cd477c8274610829ce95e"
+      url "https://github.com/Isonapse/isonapse-public/releases/download/main-dfd2472ec4d2a15ae3ea80714abbb200363f5caa/isonapse-candidate-dfd2472ec4d2a15ae3ea80714abbb200363f5caa-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "7fd5767933c1c1aaa4a81b329d4655b8db3048dc2169bb41c33c79a5d336b45a"
     end
   end
 
@@ -49,20 +47,20 @@ class Isonapse < Formula
                 "isonapse-hermes-adapter", "isonapse-pi-adapter", "isonapse-update",
                 "isonapse-integrity.dsse.json", "release-signing-key.pem",
                 "release-key-transition.json"
-    # The Isonapse Agent Hook Public Beta EULA and third-party notices ship in every archive;
+    # The Isonapse Public Beta EULA and third-party notices ship in every archive;
     # keep them in the keg so the accepted terms are on disk.
     # Preserve original signed bytes; context is routing, never signing authority.
     if OS.mac?
-      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6263653631" \
-                     "30393338636239643535643639626561653166633138303832333765663139633138372d61617263" \
+      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6466643234" \
+                     "37326563346432613135616533656138303731346162626232303033363366356361612d61617263" \
                      "6836342d6170706c652d64617277696e2e7461722e677a222c0a202022617263686976655f736861" \
-                     "323536223a2022373264623561363939386662303366636161306366353933333836653562376132" \
-                     "36306638633736663139343030656566663532323661663330616635393063222c0a202022626173" \
+                     "323536223a2022373662313663383135356435336339376236383764663366616538646338623964" \
+                     "35356433376638356639656565323338323839613133376434346663616563222c0a202022626173" \
                      "655f76657273696f6e223a2022302e332e302d62657461222c0a202022666f726d6174223a202269" \
                      "736f6e617073652d6275696c642d6964656e74697479222c0a202022666f726d61745f7665727369" \
                      "6f6e223a20332c0a20202270726f64756374223a2022686f6f6b222c0a202022736f757263655f63" \
-                     "6f6d6d6974223a202262636536313039333863623964353564363962656165316663313830383233" \
-                     "376566313963313837222c0a202022746172676574223a2022616172636836342d6170706c652d64" \
+                     "6f6d6d6974223a202264666432343732656334643261313561653365613830373134616262623230" \
+                     "303336336635636161222c0a202022746172676574223a2022616172636836342d6170706c652d64" \
                      "617277696e220a7d0a"
       signature_hex = "69736f6e617073652d72656c656173652d7369676e61747572652d76310a7373682d656432353531" \
                       "39204141414143334e7a6143316c5a4449314e544535414141414948635445397474344766624977" \
@@ -79,22 +77,22 @@ class Isonapse < Formula
                       "4151414141444d414141414c63334e6f4c57566b4d6a55314d546b414141416764784d5432323367" \
                       "5a39736a425377504257337854667478577a4679394f37560a6d4b534b312b68365a626b41414141" \
                       "5161584e76626d467763325574636d56735a57467a5a5141414141414141414147633268684e5445" \
-                      "7941414141557741414141747a633267745a5751790a4e5455784f514141414542586b376e712f52" \
-                      "4d536d68772f52356a614a76696a587230526e4961314e6837524a534f52533757536f654f71514e" \
-                      "646732344855516f75704b6654434c494f6f0a5a6430646e637331387a542b614730314a37344f0a" \
+                      "7941414141557741414141747a633267745a5751790a4e5455784f51414141454341506155383242" \
+                      "6b30486c4a324937596f784c4d3855432f744f524c763937556e3371394e5a2b396c647a614f612f" \
+                      "677571414631537a43363830346672644f510a694b3657525469544d305377784d3850503877460a" \
                       "2d2d2d2d2d454e4420535348205349474e41545552452d2d2d2d2d0a"
-      identity_sha256 = "198a851fb6b07e5410a8bf61902b1a972db79dc24325ee9b85f575fb7964da9c"
+      identity_sha256 = "4eff8c837077447741d3dd5e710f2d0acf39c6d843a464f078f33e52097849cf"
     else
-      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6263653631" \
-                     "30393338636239643535643639626561653166633138303832333765663139633138372d7838365f" \
+      identity_hex = "7b0a20202261726368697665223a202269736f6e617073652d63616e6469646174652d6466643234" \
+                     "37326563346432613135616533656138303731346162626232303033363366356361612d7838365f" \
                      "36342d756e6b6e6f776e2d6c696e75782d676e752e7461722e677a222c0a20202261726368697665" \
-                     "5f736861323536223a20226333333164653037363161633233396137383039626465386564383432" \
-                     "3866346161653762366363376237636434373763383237343631303832396365393565222c0a2020" \
+                     "5f736861323536223a20223766643537363739333363316331616161346138316233323964343635" \
+                     "3562386462333034386463323136396262343163333363373961356433333662343561222c0a2020" \
                      "22626173655f76657273696f6e223a2022302e332e302d62657461222c0a202022666f726d617422" \
                      "3a202269736f6e617073652d6275696c642d6964656e74697479222c0a202022666f726d61745f76" \
                      "657273696f6e223a20332c0a20202270726f64756374223a2022686f6f6b222c0a202022736f7572" \
-                     "63655f636f6d6d6974223a2022626365363130393338636239643535643639626561653166633138" \
-                     "30383233376566313963313837222c0a202022746172676574223a20227838365f36342d756e6b6e" \
+                     "63655f636f6d6d6974223a2022646664323437326563346432613135616533656138303731346162" \
+                     "62623230303336336635636161222c0a202022746172676574223a20227838365f36342d756e6b6e" \
                      "6f776e2d6c696e75782d676e75220a7d0a"
       signature_hex = "69736f6e617073652d72656c656173652d7369676e61747572652d76310a7373682d656432353531" \
                       "39204141414143334e7a6143316c5a4449314e544535414141414948635445397474344766624977" \
@@ -111,11 +109,11 @@ class Isonapse < Formula
                       "4151414141444d414141414c63334e6f4c57566b4d6a55314d546b414141416764784d5432323367" \
                       "5a39736a425377504257337854667478577a4679394f37560a6d4b534b312b68365a626b41414141" \
                       "5161584e76626d467763325574636d56735a57467a5a5141414141414141414147633268684e5445" \
-                      "7941414141557741414141747a633267745a5751790a4e5455784f51414141454468767532447651" \
-                      "417979496b596a357153394473514d636751344659646e596b504a712b787a5a4c376b5169584430" \
-                      "596b55394b31473668596e675153724d66570a7841567475423859626a7a437a477053365441470a" \
+                      "7941414141557741414141747a633267745a5751790a4e5455784f51414141454176524a39434546" \
+                      "3067623267307a7a6e567a51377832415a4259453042416a683751565039795343674f6d6f6b4170" \
+                      "7666666d6c7143497839746e69787743424d0a6d433250583935574f7949314f33782b4946634d0a" \
                       "2d2d2d2d2d454e4420535348205349474e41545552452d2d2d2d2d0a"
-      identity_sha256 = "d2e559cb42ca9386841a2d46b91013cda0e8280389b7e9ebbc666c628601c132"
+      identity_sha256 = "5702bcfb24816f51d61b02cb82e43dc56468e01ae9defb0106b78b20e043c307"
     end
     (bin/"build-identity.json").write [identity_hex].pack("H*")
     (bin/"build-identity.json.sig").write [signature_hex].pack("H*")
@@ -123,7 +121,7 @@ class Isonapse < Formula
     (bin/"install-context.json").write "{\"build_identity_sha256\":\"#{identity_sha256}\"," \
                                        "\"channel\":\"main\",\"format\":\"isonapse-install-context\"," \
                                        "\"format_version\":1," \
-                                       "\"source_commit\":\"bce610938cb9d55d69beae1fc1808237ef19c187\"}\n"
+                                       "\"source_commit\":\"dfd2472ec4d2a15ae3ea80714abbb200363f5caa\"}\n"
     prefix.install "LICENSE.md"
     prefix.install "THIRD_PARTY_NOTICES.md"
     prefix.install "THIRD_PARTY_DEPENDENCIES.md"
@@ -135,7 +133,17 @@ class Isonapse < Formula
 
   def caveats
     <<~EOS
-      Get started:
+      Get started: start Docker, then run this once in your own terminal
+      (on a Mac, Terminal or Ghostty), not in a window an AI agent runs in:
+        isonapse setup
+      It starts your own server and dashboard, connects Claude Code, and gives
+      you a link to finish in your browser. On a machine with other login
+      accounts, run `isonapse setup --accept-other-accounts` instead.
+      Guide: https://developer.isonapse.com/install
+      Upgrading from a version without `isonapse update`? Follow "First
+      upgrade" below before you run setup.
+
+      Without Docker, the Agent Hook alone:
         isonapse hook init
         isonapse hook start
         isonapse hook status
@@ -143,20 +151,9 @@ class Isonapse < Formula
       Optional local intelligence (skippable):
         isonapse hook intel download
 
-      Optional container services (Docker must already be installed):
-        isonapse images
-        isonapse server start
-        isonapse dashboard start
-      Images follow this installed channel and candidate automatically. Set the
-      required bootstrap and database secrets first; see the install guide.
-      Create the first administrator at http://127.0.0.1:3200/setup using the
-      saved bootstrap secret; afterwards use /sign-in.
-      Private alpha/beta images also require Docker login to ghcr.io with package
-      read access. Brew's download token does not authenticate Docker. Services
-      never start during installation. Stop existing services before a channel
-      switch; their persistent data is retained, not automatically downgraded.
+      Services never start during installation.
 
-      This software is governed by the Isonapse Agent Hook Public Beta EULA (free for
+      This software is governed by the Isonapse Public Beta EULA (free for
       personal testing, research, and internal, non-production evaluation):
         #{opt_prefix}/LICENSE.md
       Third-party model notices:
@@ -167,10 +164,26 @@ class Isonapse < Formula
       Adapter toolkit (Codex reference adapter, TypeScript and Python ADK packages):
         #{HOMEBREW_PREFIX}/share/isonapse/isonapse-adapter-toolkit.tar.gz
 
-      Upgrades: `brew upgrade isonapse` (the formula advances on every
-      main-channel release), then `isonapse hook restart` so the running
-      control plane uses the new build; until then it may report the replaced
-      hook binary as changed.
+      Upgrades: run `isonapse update` in your own terminal. It stops the
+      control plane, runs `brew upgrade` for this formula, starts the new build
+      and refreshes your agents' hooks, with one password. If `brew upgrade`
+      already ran, `isonapse update` finishes the job, except on the first
+      upgrade below. The formula advances on every main-channel release.
+
+      First upgrade from a version without `isonapse update`: `isonapse update`
+      cannot finish it, because the earlier control plane cannot report its
+      plans. After `brew upgrade isonapse`, close your agent sessions and run
+      `isonapse hook restart` (one password). The restart accepts the
+      monitored files as they are; the guide reviews them before the upgrade.
+      On a Mac with secrets stored by `isonapse hook secret set`, the restart
+      may stop with "sealed with a key this build cannot read": run the
+      commands it prints. Only then check `isonapse hook status`: its build
+      line should match the installed file. Until the restart it says STALE
+      and exits 4, because the earlier control plane still runs. That is
+      expected. Next, run `isonapse hook init` and start a fresh Claude Code
+      session. For Codex, run `isonapse hook adk-pin`. A server you started by
+      hand blocks setup: read the guide first. Then `isonapse setup` adds the
+      dashboard. Every step: https://developer.isonapse.com/install#updating
 
       Only one Isonapse channel can be linked at a time. To switch channels,
       uninstall the current Isonapse formula before installing the target one.
@@ -178,9 +191,9 @@ class Isonapse < Formula
   end
 
   test do
-    assert_match "0.3.0-beta+release.bce6109", shell_output("#{bin}/isonapse --version")
+    assert_match "0.3.0-beta+release.dfd2472", shell_output("#{bin}/isonapse --version")
     assert_predicate bin/"isonapse-hook", :executable?
-    assert_match "0.3.0-beta+release.bce6109", shell_output("#{bin}/isonapse-hook --version")
+    assert_match "0.3.0-beta+release.dfd2472", shell_output("#{bin}/isonapse-hook --version")
     assert_predicate bin/"isonapse-controlplane", :executable?
     assert_predicate bin/"isonapse-update", :executable?
     assert_predicate bin/"isonapse-integrity.dsse.json", :file?
